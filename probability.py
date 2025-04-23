@@ -1,0 +1,2 @@
+#  Probality is the measure of the likelihood that an event will occur.
+# Probability answers a question of how do we estimate something that we are uncertain about?
