@@ -235,3 +235,83 @@ dz_dx_no_chain = diff(z.subs(y,_y))
 print(dz_dx_chain) #prints 6*x*(x**2 + 1)**2
 print(dz_dx_no_chain) #prints 6*x*(x**2 + 1)**2
 
+# INTERGRALS IN PYTHON
+# Intergrals tend to find an area under the curve.
+# this can be done in python by first having a function that approximates an intergral by calling this function.
+
+def approximate _integral (a,b,n,f):
+    delta_x = (b-a)/n 
+    total sum = 0 
+    for i in range (1,n+1):
+        midpoint = 0.5 * (2 * a delta_x * (2 * i - 1))
+        total_sum + = f(midpint)
+    return total_sum * delta_x
+
+def my_function (x):
+    return x**2 + 1
+area = approximate_intergral (a=0, b=1, n=5, f=my_function)
+print (area) # prints 1.33
+
+# so if we use 1000 rectangles for the examples above we get 
+area = approximate_intergral(a=0, b=1, n=1000, f=my_function)
+print (area) # prints an area of 1.333333250000001
+# what about if we use a million triangles 
+area = approximate_integral(a=0, b=1, n=1_000_000, f=my_function) 
+# print (area)  #prints an area of 1.3333333333332733
+# we are now getting a dininishing return here
+#  so as we increase the number of triangles, the approximations starts to reach its limit at a smaller and smaller decimals
+
+# we can now use sympy which supports rational numbers
+from sympy import *
+# Declare 'x' to sympy
+x = symbols ('x')
+# Now just using python syntax to declare a function 
+f = x **2 + 1
+#  Calculate the intergral of the function  with respect to x
+#  for the area between x=0 and 1
+area = intergrate (f, (x,0,1))
+print (area) #prints 4/3
+
+# The idea of intergrals is that we can pack some small triangles to find an area under a curve. These rectangles get smaller as we approach 
+# but then the length of the triangles and also the width cannot get to 0 but closer. This will make them infinately smaller. This will lead us to use of limits
+
+# CALCULATING INTEGRALS USING LIMITS
+from sympy inport *
+# Declaring variables 
+f = x**2 + 1
+lower, upper = 0,1
+#  calculate the width and each triangle height at index "i"
+delta_x = ((upper - lower )/n )
+x_i = (lower + delta_x *i )
+fx_i = f.subs(x, x_i)
+
+# Iterate all the "n" triangles and sum their areas
+n_rectangles = Sum (delta_x * fx_i, (i, n, 1 )).doit()
+
+# Calculate the area by approaching the number of 
+# rectangles "n" to infinity
+area = limit(n_rectangles, n, oo)
+print (area) #prints 4/3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
